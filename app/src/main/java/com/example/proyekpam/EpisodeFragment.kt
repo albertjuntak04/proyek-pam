@@ -17,7 +17,8 @@ import java.util.*
 /**
  * A simple [Fragment] subclass.
  */
-private const val ARG_CRIME_ID = "story_id"
+private const val ARG_STORY_ID = "story_id"
+private const val ARG_EPISODE_ID = "episode_id"
 class EpisodeFragment : Fragment() {
     private lateinit var titleEpisode: EditText
     private lateinit var episode: Episode
@@ -27,6 +28,8 @@ class EpisodeFragment : Fragment() {
     private val episodeDetailViewModel: EpisodeDetailViewModel by lazy {
         ViewModelProviders.of(this).get(EpisodeDetailViewModel::class.java)
     }
+
+
 
 
     override fun onCreateView(
@@ -48,25 +51,43 @@ class EpisodeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         episode = Episode()
+        val episodeId: UUID = arguments?.getSerializable(ARG_EPISODE_ID)as UUID
+        episodeDetailViewModel.loadEpisode(episodeId)
     }
 
     private fun saveEpisode(){
-        val crimeId: UUID = arguments?.getSerializable(ARG_CRIME_ID)as UUID
         val sdf = SimpleDateFormat("dd/M/yyyy")
         val currentDate = sdf.format(Date())
         episode.titleEpisode = titleEpisode.getText().toString()
         episode.fieldStory = fieldEpisode.getText().toString()
         episode.date = currentDate
-        episode.idStory = crimeId.toString()
         episodeDetailViewModel.saveEpisode(episode)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        episodeDetailViewModel.episodeLiveData.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer {
+                episode -> episode?.let {
+                this.episode = episode
+                updateUI()
+            }
+            }
+        )
+    }
+
+    private fun updateUI(){
+        titleEpisode.setText(episode.titleEpisode)
+        fieldEpisode.setText(episode.fieldStory)
+    }
 
 
     companion object{
-        fun newInstance(storyId: UUID): EpisodeFragment{
+        fun newInstance(episodeId: UUID): EpisodeFragment{
             val args = Bundle().apply {
-                putSerializable(ARG_CRIME_ID, storyId)
+                putSerializable(ARG_EPISODE_ID,episodeId)
+
             }
             return EpisodeFragment().apply {
                 arguments = args

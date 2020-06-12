@@ -21,14 +21,15 @@ import java.util.*
 /**
  * A simple [Fragment] subclass.
  */
-private const val ARG_CRIME_ID = "story_id"
+private const val ARG_STORY_ID = "story_id"
 private const val TAG = "StoryEpisodeFragment"
 class StoryEpisodeFragment : Fragment() {
     private lateinit var addEpisode: FloatingActionButton
     private lateinit var episodeRecyclerView: RecyclerView
 
     interface Callbacks{
-        fun addEpisode(storyId: UUID)
+        fun addEpisode( episodeId: UUID)
+        fun onEpisodeSelected(episodeId: UUID)
     }
 //
     private var callbacks:Callbacks? = null
@@ -39,8 +40,8 @@ class StoryEpisodeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        val crimeId: String = arguments?.getSerializable(ARG_CRIME_ID)as String
-//        episodeListViewModel.loadEpisode(crimeId)
+        val storyId: UUID = arguments?.getSerializable(ARG_STORY_ID)as UUID
+        episodeListViewModel.loadEpisode(storyId)
 
     }
     override fun onCreateView(
@@ -62,16 +63,16 @@ class StoryEpisodeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        episodeListViewModel.episodeLiveData.observe(
-//            viewLifecycleOwner,
-//            androidx.lifecycle.Observer {
-//                    episodes ->
-//                episodes?.let {
-//                    Log.i(TAG,"Got stories ${episodes.size}")
-//                    updateUI(episodes)
-//                }
-//            }
-//        )
+        episodeListViewModel.episodeLiveData.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer {
+                    episodes ->
+                episodes?.let {
+                    Log.i(TAG,"Got stories ${episodes.size}")
+                    updateUI(episodes)
+                }
+            }
+        )
     }
 
     private fun updateUI(episode: List<Episode>){
@@ -81,11 +82,14 @@ class StoryEpisodeFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val crimeId: UUID = arguments?.getSerializable(ARG_CRIME_ID)as UUID
+        val storyId: UUID = arguments?.getSerializable(ARG_STORY_ID)as UUID
         addEpisode.setOnClickListener {
-            callbacks?.addEpisode(crimeId)
+            val episode = Episode()
+            episode.idStory = storyId
+            episodeListViewModel.addEpisode(episode)
+            callbacks?.addEpisode(episode.id)
         }
-        Toast.makeText(context,crimeId.toString(),Toast.LENGTH_SHORT).show()
+
     }
 
     override fun onAttach(context: Context) {
@@ -101,7 +105,7 @@ class StoryEpisodeFragment : Fragment() {
     companion object{
         fun newInstance(storyId: UUID): StoryEpisodeFragment{
             val args = Bundle().apply {
-                putSerializable(ARG_CRIME_ID, storyId)
+                putSerializable(ARG_STORY_ID, storyId)
             }
             return StoryEpisodeFragment().apply {
                 arguments = args
@@ -113,7 +117,7 @@ class StoryEpisodeFragment : Fragment() {
 
     private inner class EpisodeHolder(view: View): RecyclerView.ViewHolder(view),View.OnClickListener{
         override fun onClick(p0: View?) {
-//            callbacks?.onStorySelected(story.id)
+            callbacks?.onEpisodeSelected(episode.id)
         }
 
         init {
@@ -122,21 +126,19 @@ class StoryEpisodeFragment : Fragment() {
 
         private lateinit var episode: Episode
 
-//        val titleTextView: TextView = itemView.findViewById(R.id.story_title)
-//        val dateTextView: TextView = itemView.findViewById(R.id.story_date)
-
-
+        val titleTextView: TextView = itemView.findViewById(R.id.title_episode)
+        val date: TextView = itemView.findViewById(R.id.date_episode)
 
         fun bind(episode: Episode){
             this.episode = episode
-//            titleTextView.text = this.story.title
-//            dateTextView.text = this.story.date.toString()
+            titleTextView.text = this.episode.titleEpisode
+            date.text = this.episode.date
         }
     }
     private inner class EpisodeAdapter(var episode: List<Episode>)
         : RecyclerView.Adapter<EpisodeHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeHolder {
-            val view = layoutInflater.inflate(R.layout.item_story, parent, false)
+            val view = layoutInflater.inflate(R.layout.item_episode, parent, false)
             return EpisodeHolder(view)
         }
 
@@ -144,9 +146,7 @@ class StoryEpisodeFragment : Fragment() {
 
         override fun onBindViewHolder(holder: EpisodeHolder, position: Int) {
             val episode = episode[position]
-            /*  holder.apply {
-                  titleTextView.text = crime.title
-                  dateTextView.text = crime.date.toString()*/
+
             holder.bind(episode)
         }
     }

@@ -29,7 +29,7 @@ class StoryRepository private constructor(context: Context){
 //    fun getEpisode(): LiveData<List<Episode>> = episodeDao.getEpisode()
     fun getStory(id: UUID): LiveData<Story?> = storyDao.getStory(id)
 
-    fun addCrime(story: Story){
+    fun addStory(story: Story){
         executor.execute {
             storyDao.addStory(story)
         }
@@ -41,11 +41,19 @@ class StoryRepository private constructor(context: Context){
 //        }
 //    }
 
-//    fun getEpisode(id: String): LiveData<List<Episode>> = episodeDao.getEpisode(id)
+    fun getEpisode(id: UUID): LiveData<List<Episode>> = episodeDao.getEpisode(id)
+
+    fun getDetailEpisode(id: UUID): LiveData<Episode?> = episodeDao.getDetailEpisode(id)
 
     fun addEpisode(episode: Episode){
         executor.execute {
             episodeDao.addEpisode(episode)
+        }
+    }
+
+    fun updateEpisode(episode: Episode){
+        executor.execute {
+            episodeDao.updateEpisode(episode)
         }
     }
 

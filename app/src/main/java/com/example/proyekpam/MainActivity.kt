@@ -6,8 +6,17 @@ import android.os.Bundle
 import java.util.*
 
 class MainActivity : AppCompatActivity(),StoryListFragment.Callbacks,TambahStoryFragment.Callbacks, StoryEpisodeFragment.Callbacks{
-    override fun addEpisode(storyId: UUID) {
-        val fragment = EpisodeFragment.newInstance(storyId)
+    override fun onEpisodeSelected(episodeId: UUID) {
+        val fragment = EpisodeFragment.newInstance(episodeId)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun addEpisode(episodeId: UUID) {
+        val fragment = EpisodeFragment.newInstance(episodeId)
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragment)

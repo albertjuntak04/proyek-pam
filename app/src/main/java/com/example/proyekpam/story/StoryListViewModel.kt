@@ -10,6 +10,6 @@ class StoryListViewModel : ViewModel(){
 
 
     fun addStory(story: Story){
-        storyRepository.addCrime(story)
+        storyRepository.addStory(story)
     }
 }

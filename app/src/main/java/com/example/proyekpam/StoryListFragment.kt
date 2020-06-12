@@ -19,7 +19,7 @@ import java.util.*
  * A simple [Fragment] subclass.
  */
 
-private const val TAG = "CrimeListFragment"
+private const val TAG = "StoryListFragment"
 class StoryListFragment : Fragment() {
 
     private lateinit var storyRecyclerView: RecyclerView
@@ -140,9 +140,6 @@ class StoryListFragment : Fragment() {
 
         override fun onBindViewHolder(holder: StoryHolder, position: Int) {
             val story = stories[position]
-            /*  holder.apply {
-                  titleTextView.text = crime.title
-                  dateTextView.text = crime.date.toString()*/
             holder.bind(story)
         }
     }

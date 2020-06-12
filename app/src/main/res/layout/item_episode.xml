@@ -11,22 +11,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Episode"
-            android:textSize="19sp"></TextView>
+            android:text="2020-10-20"
+            android:id="@+id/date_episode"
+            android:textSize="14sp"
+            android:layout_marginLeft="26dp"></TextView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:id="@+id/episode"
+            android:text="Judul"
             android:textSize="19sp"
+            android:id="@+id/title_episode"
             android:layout_marginLeft="26dp"></TextView>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
