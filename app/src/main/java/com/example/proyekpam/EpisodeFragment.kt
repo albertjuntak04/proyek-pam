@@ -42,17 +42,17 @@ class EpisodeFragment : Fragment() {
     private lateinit var photoUri : Uri
 
 
+    // Untuk memanggil ketika akan menghapus episode
     interface Callbacks{
         fun deleteEpisode(storyId: UUID)
     }
 
     private var callbacks: Callbacks? = null
+
+
     private val episodeDetailViewModel: EpisodeDetailViewModel by lazy {
         ViewModelProviders.of(this).get(EpisodeDetailViewModel::class.java)
     }
-
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,26 +87,23 @@ class EpisodeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         episode = Episode()
-        val episodeId: UUID = arguments?.getSerializable(ARG_EPISODE_ID)as UUID
-        episodeDetailViewModel.loadEpisode(episodeId)
+        val episodeId: UUID = arguments?.getSerializable(ARG_EPISODE_ID)as UUID // Untuk memilih episode yang akan ditampilkan dengan manggil id tiap episode
+        episodeDetailViewModel.loadEpisode(episodeId)  // Get episode berdasarkan id episode
     }
 
     fun getActionBar(): ActionBar? {
         return (activity as MainActivity).getSupportActionBar()
     }
 
-
-
     private fun dialogConfirmation(){
         val builder = AlertDialog.Builder(context!!)
         builder.setTitle(R.string.app_name)
         builder.setMessage("Do you want to delete " + episode.titleEpisode + "?")
-   //     builder.setIcon(R.drawable.ic_launcher)
         builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id ->
             episodeDetailViewModel.deleteEpisode(episode)
             callbacks?.deleteEpisode(episode.idStory)
             dialog.dismiss()
-            //chronometer.stop()    // stop chronometer here
+
         })
         builder.setNegativeButton("No",
             DialogInterface.OnClickListener { dialog, id -> dialog.dismiss() })
@@ -121,7 +118,7 @@ class EpisodeFragment : Fragment() {
         episode.titleEpisode = titleEpisode.getText().toString()
         episode.fieldStory = fieldEpisode.getText().toString()
         episode.date = currentDate
-        episodeDetailViewModel.saveEpisode(episode)
+        episodeDetailViewModel.saveEpisode(episode) // Memanggil fungsi insert dia episodeDao
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -130,8 +127,8 @@ class EpisodeFragment : Fragment() {
             viewLifecycleOwner,
             androidx.lifecycle.Observer {
                 episode -> episode?.let {
-                this.episode = episode
-                photoFile = episodeDetailViewModel.getPhotoFile(episode)
+                this.episode = episode          // Inisialiasi data episode
+                photoFile = episodeDetailViewModel.getPhotoFile(episode) // Memanggil fungsi getPhoto didalam episodedetailviewmodel
                 photoUri = FileProvider.getUriForFile(
                     requireActivity(),
                     "com.example.proyekpam.fileprovider",

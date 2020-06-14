@@ -9,14 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyekpam.episode.EpisodeListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.item_episode.*
 import java.util.*
 
 /**
@@ -32,9 +30,9 @@ class StoryEpisodeFragment : Fragment() {
         fun addEpisode( episodeId: UUID)
         fun onEpisodeSelected(episodeId: UUID)
     }
-//
+
     private var callbacks:Callbacks? = null
-    private var adapter: StoryEpisodeFragment.EpisodeAdapter? = EpisodeAdapter(emptyList())
+    private var adapter: EpisodeAdapter? = EpisodeAdapter(emptyList())
     private val episodeListViewModel : EpisodeListViewModel by lazy {
         ViewModelProviders.of(this).get(EpisodeListViewModel::class.java)
     }

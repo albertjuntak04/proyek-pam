@@ -53,7 +53,6 @@ class TambahStoryFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         createStory.setOnClickListener {
-//            Toast.makeText(context,"daa",Toast.LENGTH_SHORT).show()
             saveStory()
             callbacks?.onAddStory()
         }

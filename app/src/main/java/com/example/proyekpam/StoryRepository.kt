@@ -19,7 +19,7 @@ class StoryRepository private constructor(context: Context){
         StoryDatabase::class.java,
         DATABASE_NAME
     ).build()
-//    ).addMigrations(migration_1_2).build()
+
 
     private val storyDao = database.storyDao()
     private val episodeDao = database.episodeDao()
@@ -27,7 +27,6 @@ class StoryRepository private constructor(context: Context){
     private val fileDir = context.applicationContext.filesDir
 
     fun getStories(): LiveData<List<Story>> = storyDao.getStories()
-//    fun getEpisode(): LiveData<List<Episode>> = episodeDao.getEpisode()
     fun getStory(id: UUID): LiveData<Story?> = storyDao.getStory(id)
 
     fun addStory(story: Story){
@@ -36,11 +35,6 @@ class StoryRepository private constructor(context: Context){
         }
     }
 
-//    fun getEpisode(id: String){
-//        executor.execute {
-//            episodeDao.getEpisode()
-//        }
-//    }
 
     fun getEpisode(id: UUID): LiveData<List<Episode>> = episodeDao.getEpisode(id)
 

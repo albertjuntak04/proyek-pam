@@ -23,6 +23,4 @@ interface EpisodeDao {
     @Query("SELECT * FROM episode WHERE id=(:id)")
     fun getDetailEpisode(id:UUID): LiveData<Episode?>
 
-
-
 }

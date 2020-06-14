@@ -3,4 +3,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_episode">Title Episode</string>
+    <string name="isi_cerita">Isi Cerita</string>
+    <string name="judul">Judul</string>
+    <string name="create">Create</string>
+    <string name="date">2020-10-20</string>
 </resources>

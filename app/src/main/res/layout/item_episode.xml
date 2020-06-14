@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2020-10-20"
+            android:text="@string/date"
             android:id="@+id/date_episode"
             android:textSize="20sp"
             android:layout_marginLeft="26dp"
@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Judul"
+            android:text="@string/judul"
             android:textSize="29sp"
             android:id="@+id/title_episode"
             android:layout_marginLeft="26dp"
