@@ -3,7 +3,6 @@ package com.example.proyekpam
 
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -96,21 +95,6 @@ class StoryListFragment : Fragment() {
         storyRecyclerView.adapter = adapter
     }
 
-    //    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
-//        inflater?.let { super.onCreateOptionsMenu(menu, it) }
-//        inflater?.inflate(R.menu.delete_episode, menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        return when (item?.itemId){
-//            R.id.delete_episode -> {
-//                episodeDetailViewModel.deleteEpisode(episode)
-//                true
-//            }
-//            else -> return  super.onOptionsItemSelected(item)
-//        }
-//
-//    }
 
     companion object{
         fun newInstance(): StoryListFragment{
