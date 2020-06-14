@@ -11,7 +11,7 @@ import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.Executors
 
-private const val DATABASE_NAME = "proek-date"
+private const val DATABASE_NAME = "story-database"
 
 class StoryRepository private constructor(context: Context){
     private val database : StoryDatabase = Room.databaseBuilder(
