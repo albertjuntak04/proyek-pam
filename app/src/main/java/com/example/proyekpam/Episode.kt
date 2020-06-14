@@ -9,6 +9,10 @@ data class Episode(@PrimaryKey val id: UUID = UUID.randomUUID(),
                    var titleEpisode: String = "",
                    var date: String = " ",
                    var fieldStory: String = " ",
-                   var idStory: String = " "
+                   var idStory: UUID = UUID.randomUUID()
    ) {
+
+    val photoFileName
+        get() = "IMG_$id.jpg"
+
 }

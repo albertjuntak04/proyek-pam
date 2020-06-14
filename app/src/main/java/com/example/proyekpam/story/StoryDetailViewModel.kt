@@ -14,10 +14,10 @@ class StoryDetailViewModel : ViewModel() {
 
     var storyLiveData: LiveData<Story?> =
         Transformations.switchMap(storyIdLiveData){
-                crimeId -> storyRepository.getStory(crimeId)
+                storyId -> storyRepository.getStory(storyId)
         }
 
     fun saveStory(story: Story){
-        storyRepository.addCrime(story)
+        storyRepository.addStory(story)
     }
 }
