@@ -5,7 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import java.util.*
 
-class MainActivity : AppCompatActivity(),StoryListFragment.Callbacks,TambahStoryFragment.Callbacks, StoryEpisodeFragment.Callbacks{
+class MainActivity : AppCompatActivity(),StoryListFragment.Callbacks,TambahStoryFragment.Callbacks, StoryEpisodeFragment.Callbacks, EpisodeFragment.Callbacks{
+    override fun deleteEpisode(storyId: UUID) {
+        val fragment = StoryEpisodeFragment.newInstance(storyId)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
     override fun onEpisodeSelected(episodeId: UUID) {
         val fragment = EpisodeFragment.newInstance(episodeId)
         supportFragmentManager
@@ -69,14 +78,5 @@ class MainActivity : AppCompatActivity(),StoryListFragment.Callbacks,TambahStory
             .addToBackStack(null)
             .commit()
     }
-
-//    override fun onAddStory() {
-//        val fragment = TambahStoryFragment.newInstance()
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.fragment_container, fragment)
-//            .addToBackStack(null)
-//            .commit()
-//    }
 
 }

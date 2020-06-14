@@ -6,11 +6,12 @@ import androidx.room.Room
 import com.example.proyekpam.database.EpisodeDao
 import com.example.proyekpam.database.StoryDatabase
 import com.example.proyekpam.database.migration_1_2
+import java.io.File
 import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.Executors
 
-private const val DATABASE_NAME = "proyek-date"
+private const val DATABASE_NAME = "proek-date"
 
 class StoryRepository private constructor(context: Context){
     private val database : StoryDatabase = Room.databaseBuilder(
@@ -51,11 +52,19 @@ class StoryRepository private constructor(context: Context){
         }
     }
 
+    fun deleteEpisode(episode: Episode){
+        executor.execute {
+            episodeDao.deleteEpisode(episode)
+        }
+    }
+
     fun updateEpisode(episode: Episode){
         executor.execute {
             episodeDao.updateEpisode(episode)
         }
     }
+
+    fun getPhotoFile(episode:Episode): File = File(fileDir, episode.photoFileName)
 
     companion object{
         private var INSTANCE : StoryRepository? = null

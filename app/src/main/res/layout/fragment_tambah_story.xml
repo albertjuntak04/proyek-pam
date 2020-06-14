@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".TambahStoryFragment"
     android:layout_margin="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/cardview_shadow_end_color">
 
     <TextView
         android:layout_width="match_parent"

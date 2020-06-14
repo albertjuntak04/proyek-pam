@@ -1,10 +1,7 @@
 package com.example.proyekpam.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.proyekpam.Episode
 import com.example.proyekpam.Story
 import java.util.*
@@ -16,6 +13,9 @@ interface EpisodeDao {
 
     @Insert
     fun addEpisode(episode: Episode)
+
+    @Delete
+    fun deleteEpisode(episode: Episode)
 
     @Query("SELECT * FROM episode WHERE idStory=(:id)")
     fun getEpisode(id:UUID): LiveData<List<Episode>>
