@@ -57,7 +57,7 @@ class StoryListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        getActionBar()?.setTitle("Your Title");
+        getActionBar()?.setTitle("My Story");
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

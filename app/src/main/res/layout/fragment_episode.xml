@@ -5,18 +5,23 @@
     android:layout_height="match_parent"
     tools:context=".EpisodeFragment"
     android:orientation="vertical"
-    android:layout_margin="5dp"
-    android:background="@color/cardview_shadow_end_color">
+    android:layout_margin="5dp">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/title_episode"
-        android:hint="@string/title_episode"
-        android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:backgroundTint="@android:color/holo_blue_dark">
-    </EditText>
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       >
+       <EditText
+           android:layout_centerHorizontal="true"
+           android:layout_width="200dp"
+           android:layout_height="wrap_content"
+           android:id="@+id/title_episode"
+           android:hint="@string/title_episode"
+           android:layout_marginTop="30dp"
+           android:textAlignment="center"
+           android:backgroundTint="@android:color/holo_blue_dark">
+       </EditText>
+   </RelativeLayout>
 
    <RelativeLayout
        android:layout_width="match_parent"
@@ -44,7 +49,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/isi_cerita"
+        android:text="@string/your_story"
         android:layout_marginTop="5dp"
         android:textAlignment="center"
         android:textSize="16sp"></TextView>
@@ -55,7 +60,21 @@
         android:autoSizeTextType="uniform"
         android:layout_marginTop="10dp"
         android:id="@+id/field_episode"
-        android:background="@drawable/text_border"
+        android:background="@drawable/rectanglebg"
         android:textAlignment="textStart"
+        android:text="@string/add_description"
         ></EditText>
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <Button
+           android:layout_width="150dp"
+           android:layout_height="50dp"
+           android:text="Add"
+           android:background="@drawable/rectanglebtn"
+           android:layout_marginTop="20dp"
+           android:layout_centerHorizontal="true"
+           android:id="@+id/btnAdd"
+           ></Button>
+   </RelativeLayout>
 </LinearLayout>

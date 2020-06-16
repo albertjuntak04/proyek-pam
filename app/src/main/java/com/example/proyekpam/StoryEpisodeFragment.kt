@@ -50,7 +50,7 @@ class StoryEpisodeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        getActionBar()?.setTitle("My Episode");
+        getActionBar()?.setTitle("My Story");
     }
 
     override fun onCreateView(

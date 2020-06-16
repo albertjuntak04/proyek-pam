@@ -5,13 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".TambahStoryFragment"
     android:layout_margin="10dp"
-    android:orientation="vertical"
-    android:background="@color/cardview_shadow_end_color">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/judul"
+        android:text="Story"
         android:textSize="25sp">
     </TextView>
 
@@ -30,7 +29,7 @@
         android:textColor="#fff"
         android:textAllCaps="false"
         android:textSize="20sp"
-        android:background="#2196F3"
+        android:background="@drawable/rectanglebtn"
         android:id="@+id/create_story"></Button>
 
 

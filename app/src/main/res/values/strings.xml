@@ -8,4 +8,6 @@
     <string name="judul">Judul</string>
     <string name="create">Create</string>
     <string name="date">2020-10-20</string>
+    <string name="your_story">Your Story</string>
+    <string name="add_description">Add Description</string>
 </resources>

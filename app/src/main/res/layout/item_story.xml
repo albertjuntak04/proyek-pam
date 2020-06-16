@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -7,8 +7,7 @@
     android:layout_height="90dp"
     app:cardCornerRadius="2dp"
     android:layout_marginBottom="10dp"
-    card_view:cardCornerRadius="10dp"
-    app:cardBackgroundColor="#E93972"
+    android:background="@drawable/rectanglebg"
     android:layout_margin="6dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,8 +20,7 @@
             android:layout_marginTop="3dp"
             android:text="@string/date"
             android:textSize="20sp"
-            android:textColor="#F8F8FA"
-            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -38,12 +36,11 @@
             android:layout_marginBottom="4dp"
             android:text="@string/judul"
             android:textSize="29sp"
-            android:textColor="#F8F8FA"
-            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"></TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>
